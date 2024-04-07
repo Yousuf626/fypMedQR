@@ -59,7 +59,7 @@ class FabCar extends Contract {
         const hashAsBytes = await ctx.stub.getState(hash); // get the link from chaincode state
         if (!hashAsBytes || hashAsBytes.length === 0) {
             return 'no hash';
-        }
+        }   
         console.log(hashAsBytes.toString());
         return hashAsBytes.toString();
     }
