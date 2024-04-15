@@ -10,7 +10,7 @@ const patientSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    mobileNumber: {
+    mobile: {
         type: String,
         required: true,
         unique: true
@@ -19,6 +19,15 @@ const patientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    age: {
+        type: Number,
+      },
+    adress: {
+        type: String
+      },
+    cnic: {
+        type: String
+      },
     resetPasswordOTP: {
         type: String
     },

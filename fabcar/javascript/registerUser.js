@@ -5,7 +5,7 @@
  */
 
 'use strict';
-
+const { getEmail, getIdentity } = require('./config/getUser');
 const { Wallets } = require('fabric-network');
 const FabricCAServices = require('fabric-ca-client');
 const fs = require('fs');
@@ -27,13 +27,26 @@ async function register(username) {
         console.log(`Wallet path: ${walletPath}`);
 
         // Check to see if we've already enrolled the user.
-        const userIdentity = await wallet.get(username);
-        if (userIdentity) {
-            console.log('An identity for the user "appUser" already exists in the wallet');
-            return userIdentity;;
+        const  userIdentity = await getIdentity(username)
+        if (userIdentity != null) {
+            console.log('An identity for the user '+username+' already exist in the wallet');
+            return;
         }
 
+
+
+        // const wallet = await Wallets.newInMemoryWallet();
+
+
+        // const userIdentity = await wallet.get(username);
+        // if (userIdentity) {
+        //     console.log('An identity for the user "appUser" already exists in the wallet');
+        //     return userIdentity;;
+        // }
+
         // Check to see if we've already enrolled the admin user.
+
+
         const adminIdentity = await wallet.get('admin');
         if (!adminIdentity) {
             console.log('An identity for the admin user "admin" does not exist in the wallet');
@@ -63,9 +76,9 @@ async function register(username) {
             mspId: 'Org1MSP',
             type: 'X.509',
         };
-        console.log(x509Identity);
+        // console.log(x509Identity);
         await wallet.put(username, x509Identity);
-        console.log('Successfully registered and enrolled admin user "${username}" and imported it into the wallet');
+        console.log('Successfully registered and enrolled admin user ' +  username +' and imported it into the wallet');
 
         console.log(typeof x509Identity);
         return x509Identity;

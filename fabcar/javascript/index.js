@@ -53,10 +53,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const patientRoutes = require('./routes/patientRoutes');
 const medicalRecordRoutes = require('./routes/medicalRecordRoutes');
+const cors = require('cors');
 
 
 const app = express();
-
+app.use(cors());
 // Middleware
 app.use(bodyParser.json());
 

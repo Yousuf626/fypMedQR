@@ -15,6 +15,7 @@ router.post('/forgot-password', userController.forgotPassword);
 // Change password using OTP
 router.post('/change-password-with-otp', userController.changePasswordWithOTP);
 
+router.get('/user-info',);
 
 
 
